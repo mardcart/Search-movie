@@ -1,5 +1,8 @@
 import { Component } from "react";
 
+const clave = '3a124f3e';
+
+
 export class SearchForm extends Component{
     state = {
         inputMovie: ''
@@ -10,7 +13,14 @@ export class SearchForm extends Component{
     }
     _handleSubmit=(e)=>{
         e.preventDefault()
-        alert(this.state.inputMovie)
+//        alert(this.state.inputMovie)
+        const {inputMovie} = this.state
+        fetch(`http://www.omdbapi.com/?apikey=${clave}&s=${inputMovie}`)
+        .then(res => res.json())
+        .then(results => {
+            console.log(results)
+        })
+
     }
 
     render(){
