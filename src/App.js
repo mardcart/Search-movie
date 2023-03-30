@@ -3,6 +3,7 @@ import 'bulma/css/bulma.css'
 import { Title } from './Components/Title';
 import { SearchForm } from './Components/SearchForms';
 import { Component } from 'react';
+import { Movie } from './Components/Movie';
 
 
 class App extends Component {
@@ -18,7 +19,15 @@ class App extends Component {
     const {results} = this.state
 
     return results.map(movie=>{
-      return <p key={movie.imdbID}>{movie.Title}</p>
+//      return <p key={movie.imdbID}>{movie.Title}</p>
+        return (
+          <Movie
+            key={movie.imdbId}
+            title ={movie.Title}
+            poster={movie.Poster}
+            year = {movie.Year}
+          />
+        )
     })
 
   }
