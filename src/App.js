@@ -9,11 +9,12 @@ import { Movielist } from './Components/Movielist';
 
 class App extends Component {
   state = { 
-    results: []
+    results: [],
+    usedSearch : false
           }
   
   _handleResults = (results)=>{
-    this.setState({results})
+    this.setState({results,usedSearch:true})
 
   }
 //   _renderResulto(){
@@ -32,6 +33,12 @@ class App extends Component {
 //     })
 
 //   }
+  _renderResults(){
+      return this.state.results.length === 0 
+    ? <p>sorry! results not found</p>
+    : <Movielist movies={this.state.results}/>
+
+  }
           
   render(){
     return (
@@ -41,11 +48,18 @@ class App extends Component {
         <SearchForm  onResults={this._handleResults}/>
         </div>
         {
+          this.state.usedSearch
+          ? this._renderResults()
+          : <small>use the form to search a movie</small>
+        }
+
+
+        {/* {
           this.state.results.length === 0 
           ? <p>sin resultado</p>
 //          : this._renderResulto()
           : <Movielist movies={this.state.results}/>
-        }
+        } */}
 
       </div>
     );
